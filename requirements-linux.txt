@@ -8,4 +8,5 @@ uvicorn
 python-multipart
 python-dotenv
 requests
+pymongo
 colorlog
