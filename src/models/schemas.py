@@ -9,3 +9,6 @@ class signupRequest(BaseModel):
 class signinRequest(BaseModel):
     email: str = Field(default='')
     password: str = Field(default='')
+
+class retrieveJobRequest(BaseModel):
+    job_name: str = Field(default='')
