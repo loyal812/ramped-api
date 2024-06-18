@@ -17,6 +17,7 @@ sys.path.append(current_script_directory)
 
 # Import the API endpoints from the endpoints module
 from src.api.endpoints import docs
+from src.api.endpoints.auth import auth
 
 # Import the CustomLogger class from the logging configuration module
 from src.utils.logging_config import CustomLogger
@@ -39,6 +40,7 @@ app.add_middleware(
 
 # Include the router for endpoint
 app.include_router(docs.router)
+app.include_router(auth.router)
 
 # Run the FastAPI application using Uvicorn server
 if __name__ == "__main__":
