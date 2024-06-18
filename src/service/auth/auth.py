@@ -65,4 +65,17 @@ def generate_token(email: str) -> str:
     return jwt.encode(payload, jwt_secret, algorithm=jwt_algorithm)
 
 def perform_signin(email: str, password: str):
-    return
+    db = MongoDB(collection_name=mongodb_user_collection_name)
+    
+    user = db.collection.find_one({"email": email})
+    if not user:
+        return {"error": "User does not exist"}
+    
+    if not pwd_context.verify(password, user['password']):
+        return {"error": "Invalid password"}
+    
+    try:
+        token = generate_token(email)
+        return {"message": "Signin successful", "token": token}
+    except Exception as e:
+        return {"error": str(e)}
